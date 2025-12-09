@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Toxic Comment Detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fallback ke Segoe UI jika Inter gagal dimuat -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Sistem Cerdas • Rule-Based</p>
+        <h1>AI Toxic Comment Detector</h1>
+        <p class="subtitle">Deteksi tingkat toksisitas komentar berbasis kamus dengan tokenisasi & normalisasi.</p>
+      </div>
+      <div class="badge">Client-side · No backend</div>
+    </header>
+
+    <section class="card input-card">
+      <label for="comment" class="label">Masukkan komentar</label>
+      <textarea id="comment" rows="6" placeholder="Tulis komentar atau paragraf di sini..."></textarea>
+      <div class="quick-actions">
+        <div class="samples">
+          <span class="eyebrow">Contoh cepat:</span>
+          <button type="button" class="chip" data-sample="positif">Contoh Positif</button>
+          <button type="button" class="chip" data-sample="campur">Contoh Campuran</button>
+          <button type="button" class="chip" data-sample="negatif">Contoh Toxic</button>
+        </div>
+        <button type="button" id="clearText" class="ghost">Bersihkan</button>
+      </div>
+      <div class="actions">
+        <button id="analyzeBtn" type="button">
+          <span class="btn-label">Analyze Sentiment</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+        <p class="hint">Data diproses lokal. Tidak ada data yang dikirim ke server.</p>
+      </div>
+    </section>
+
+    <section id="resultContainer" class="card result-card" aria-live="polite">
+      <div class="result-header">
+        <div>
+          <p class="eyebrow">Hasil Analisis</p>
+          <h2 id="statusLabel">Menunggu input...</h2>
+        </div>
+        <div id="scoreBadge" class="score-badge muted">0%</div>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <p class="metric-label">Total Kata</p>
+          <p id="totalWords" class="metric-value">0</p>
+        </div>
+        <div class="metric">
+          <p class="metric-label">Kata Toxic</p>
+          <p id="toxicWords" class="metric-value">0</p>
+        </div>
+        <div class="metric">
+          <p class="metric-label">Persentase Toxic</p>
+          <p id="toxicPercent" class="metric-value">0%</p>
+        </div>
+      </div>
+      <div class="text-preview">
+        <p class="metric-label">Teks dengan highlight</p>
+        <div id="highlightedText" class="preview-box">Teks akan muncul di sini.</div>
+      </div>
+    </section>
+
+    <section class="card history-card">
+      <div class="history-header">
+        <div>
+          <p class="eyebrow">Riwayat Lokal</p>
+          <h3>Analisis Terakhir</h3>
+        </div>
+        <div class="history-actions">
+          <button type="button" id="exportJson" class="ghost">Download JSON</button>
+          <button type="button" id="clearHistory" class="ghost danger">Hapus Riwayat</button>
+        </div>
+      </div>
+      <div id="historyList" class="history-list">Belum ada riwayat.</div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
